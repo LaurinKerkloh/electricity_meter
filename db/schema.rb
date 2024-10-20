@@ -10,5 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 0) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_20_154647) do
+  create_table "electricity_meter_readings", force: :cascade do |t|
+    t.datetime "time", null: false
+    t.decimal "reading", precision: 10, scale: 4
+    t.integer "current_power"
+    t.string "meter", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["time", "meter"], name: "index_electricity_meter_readings_on_time_and_meter", unique: true
+  end
 end

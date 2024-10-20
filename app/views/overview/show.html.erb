@@ -1,0 +1,22 @@
+<%= turbo_stream_from :overview %>
+<% if [@house.time, @solar.time ].min < Time.now - 30.seconds %>
+  <div class="text-lg border rounded-lg bg-yellow-200 p-3 mb-3">Einer der Zähler hat seit mindestens 30 Sekunden keinen Wert mehr gemeldet!</div>
+<% end %>
+<div class="flex gap-4 w-full">
+  <div class="border-2 rounded p-3 flex-auto">
+    <h2 class="text-xl mb-2">Aktuell</h2>
+    Bezug: <%= [@house.current_power, 0].max %> W<br>
+    Einspeisung: <%= [-@house.current_power, 0].max %> W<br>
+    Produktion:  <%= @solar.current_power %> W<br>
+    Verbrauch: <%= @house.current_power + @solar.current_power %> W
+  </div>
+  <div class="border-2 rounded p-3 flex-auto">
+    <h2 class="text-xl mb-2">Zählerstände</h2>
+    Haus: <%= @house.reading %> kWh<br>
+    Solar: <%= @solar.reading %> kWh
+  </div>
+</div>
+<div class="mt-2">
+<p>Haus letzte Aktualisierung: <%= l(@house.time, format: :exact)%></p>
+<p>Solar letzte Aktualisierung: <%= l(@solar.time, format: :exact)%></p>
+</div>

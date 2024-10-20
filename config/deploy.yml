@@ -2,7 +2,7 @@
 service: electricity_meter
 
 # Name of the container image.
-image: laurinkerkloh/electricity_meter
+image: lkerkloh/electricity_meter
 
 # Deploy to these servers.
 servers:
@@ -24,9 +24,8 @@ servers:
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
-  server: ghcr.io
-  username:
-    - KAMAL_REGISTRY_PASSWORD
+  # server: ghcr.io
+  username: lkerkloh
 
   # Always use an access token rather than real password when possible.
   password:
