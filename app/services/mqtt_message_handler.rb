@@ -1,4 +1,4 @@
-class MqttHandler
+class MqttMessageHandler
   def initialize(topic, message)
     @topic = topic
     @message = message
