@@ -13,7 +13,6 @@ class MqttMessageHandler
 
   def insert_record
     parsed_message = JSON.parse(@message)
-    Rails.logger.info(parsed_message.class)
     time = parsed_message.dig("Time").in_time_zone("UTC")
     meter = parsed_message.keys.last
     reading = parsed_message.dig(meter, "reading")

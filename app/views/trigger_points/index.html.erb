@@ -1,0 +1,48 @@
+<table class="border-collapse w-full table-auto">
+  <thead>
+    <tr class="border-b-2">
+      <th class="text-start">Name</th>
+      <th class="text-start">Richtung</th>
+      <th class="text-start">Leistung</th>
+      <th class="text-start">Scene</th>
+      <th class="whitespace-nowrap w-0">Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trigger_points.each do |trigger_point| %>
+      <tr class="border-b">
+        <td><%= trigger_point.name %></td>
+        <td><%= trigger_point.direction %></td>
+        <td><%= trigger_point.power %></td>
+        <td><%= trigger_point.scene %></td>
+        <td class="flex whitespace-nowrap w-0">
+          <%= link_to icon("pencil"), [:edit, trigger_point] %>
+          <% if trigger_point != @trigger_points.first %>
+            <%=
+              button_to icon("arrow-up"),
+                        trigger_point,
+                        params: {
+                          trigger_point: {
+                            position: trigger_point.position - 1,
+                          },
+                        }
+            %>
+          <% end %>
+          <% if trigger_point != @trigger_points.last %>
+            <%=
+              button_to icon("arrow-down"),
+                        trigger_point,
+                        params: {
+                          trigger_point: {
+                            position: trigger_point.position + 1,
+                          },
+                        }
+            %>
+          <% end %>
+          <%= button_to icon("trash"), trigger_point, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Erstellen", %i[new trigger_point] %>

@@ -1,0 +1,14 @@
+---
+de:
+  activerecord:
+    attributes:
+      trigger_point:
+        direction: Richtung
+        power: Leistung
+        scene: Scene
+        name: Name
+        directions:
+          up: Zunehmend
+          down: Abnehmend
+    models:
+      trigger_point: Triggerpunkt

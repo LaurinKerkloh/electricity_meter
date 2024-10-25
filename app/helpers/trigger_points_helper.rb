@@ -1,0 +1,2 @@
+module TriggerPointsHelper
+end

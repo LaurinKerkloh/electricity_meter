@@ -1,0 +1,17 @@
+<%# locals: (trigger_point:) %>
+<%= form_with model: trigger_point do |form| %>
+  <%= form.object.errors.full_messages.presence %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :direction %>
+  <%= form.select :direction, TriggerPoint.enum_choices_for_selection(:direction), required: true %>
+
+  <%= form.label :power %>
+  <%= form.number_field :power, step: 1, required: true %>
+
+  <%= form.label :scene %>
+  <%= form.text_field :scene, required: true %>
+
+  <%= form.submit %>
+<% end %>

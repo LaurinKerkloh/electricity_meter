@@ -50,14 +50,17 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   # gem "rubocop-rails-omakase", require: false
-
-  gem "standard", "~> 1.39", require: false
-  gem "standard-rails", "~> 1.0", require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "erb-formatter", require: false, git: "https://github.com/pelletencate/erb-formatter", ref: "99601be"
+
+  gem "ruby-lsp", "~> 0.17", require: false
+
+  gem "standard", "~> 1.39", require: false
+  gem "standard-rails", "~> 1.0", require: false
 end
 
 group :test do
@@ -65,6 +68,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
 
 gem "tailwindcss-rails", "~> 3.0"
