@@ -3,29 +3,37 @@
   <div class="text-lg border rounded-lg bg-yellow-200 p-3 mb-3">Einer der Zähler hat seit mindestens 30 Sekunden keinen Wert mehr gemeldet!</div>
 <% end %>
 <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
-  <div class="border-2 rounded p-3 flex-auto">
-    <h2 class="text-xl mb-2">Aktuell</h2>
-    Bezug:
-    <%= [@house.current_power, 0].max %>
-    W<br>
-    Einspeisung:
-    <%= [-@house.current_power, 0].max %>
-    W<br>
-    Produktion:
-    <%= @solar.current_power %>
-    W<br>
-    Verbrauch:
-    <%= @house.current_power + @solar.current_power %>
-    W
+  <div class="border-2 rounded-lg flex-auto flex flex-col gap-2 overflow-hidden">
+    <div class="bg-gray-50 p-3 border-b-2">
+      <h2 class="text-xl">Aktuell</h2>
+    </div>
+    <div class="p-3">
+      Bezug:
+      <%= [@house.current_power, 0].max %>
+      W<br>
+      Einspeisung:
+      <%= [-@house.current_power, 0].max %>
+      W<br>
+      Produktion:
+      <%= @solar.current_power %>
+      W<br>
+      Verbrauch:
+      <%= @house.current_power + @solar.current_power %>
+      W
+    </div>
   </div>
-  <div class="border-2 rounded p-3 flex-auto">
-    <h2 class="text-xl mb-2">Zählerstände</h2>
-    Haus:
-    <%= @house.reading %>
-    kWh<br>
-    Solar:
-    <%= @solar.reading %>
-    kWh
+  <div class="border-2 rounded-lg flex-auto flex flex-col gap-2 overflow-hidden">
+    <div class="bg-gray-50 p-3 border-b-2">
+      <h2 class="text-xl">Zählerstände</h2>
+    </div>
+    <div class="p-3">
+      Haus:
+      <%= @house.reading %>
+      kWh<br>
+      Solar:
+      <%= @solar.reading %>
+      kWh
+    </div>
   </div>
   <div class="mt-2">
     <p>Haus letzte Aktualisierung:

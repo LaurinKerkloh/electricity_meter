@@ -1,17 +1,29 @@
 <%# locals: (trigger_point:) %>
 <%= form_with model: trigger_point do |form| %>
   <%= form.object.errors.full_messages.presence %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="flex flex-col gap-3">
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
 
-  <%= form.label :direction %>
-  <%= form.select :direction, TriggerPoint.enum_choices_for_selection(:direction), required: true %>
+    <div>
+      <%= form.label :direction %>
+      <%= form.select :direction, TriggerPoint.enum_choices_for_selection(:direction), required: true %>
+    </div>
 
-  <%= form.label :power %>
-  <%= form.number_field :power, step: 1, required: true %>
+    <div>
+      <%= form.label :power %>
+      <%= form.number_field :power, step: 1, required: true %>
+    </div>
 
-  <%= form.label :scene %>
-  <%= form.text_field :scene, required: true %>
+    <div>
+      <%= form.label :scene %>
+      <%= form.text_field :scene, required: true %>
+    </div>
 
-  <%= form.submit class: "link" %>
+    <div>
+      <%= form.submit class: "link" %>
+    </div>
+  </div>
 <% end %>
