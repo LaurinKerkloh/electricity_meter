@@ -5,7 +5,7 @@ de:
       trigger_point:
         direction: Richtung
         power: Bezug
-        scene: Scene
+        scene: Szene
         name: Name
         directions:
           up: Zunehmend

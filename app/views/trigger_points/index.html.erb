@@ -7,7 +7,7 @@
       <th class="text-start">Name</th>
       <th class="text-start">Richtung</th>
       <th class="text-start">Bezug</th>
-      <th class="text-start">Scene</th>
+      <th class="text-start">Szene</th>
       <th class="whitespace-nowrap w-0">Aktionen</th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @trigger_points.each do |trigger_point| %>
       <tr class="border-b">
         <td><%= trigger_point.name %></td>
-        <td><%= trigger_point.direction %></td>
+        <td><%= trigger_point.human_enum_value_name(:direction) %></td>
         <td><%= trigger_point.power %></td>
         <td><%= trigger_point.scene %></td>
         <td class="flex whitespace-nowrap w-0 gap-1">
