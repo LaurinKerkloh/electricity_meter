@@ -11,4 +11,4 @@ de:
           up: Zunehmend
           down: Abnehmend
     models:
-      trigger_point: Triggerpunkt
+      trigger_point: Schaltpunkt

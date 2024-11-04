@@ -2,7 +2,7 @@
 <% if [@house.time, @solar.time].min < Time.now - 30.seconds %>
   <div class="text-lg border rounded-lg bg-yellow-200 p-3 mb-3">Einer der Zähler hat seit mindestens 30 Sekunden keinen Wert mehr gemeldet!</div>
 <% end %>
-<div class="grid gap-4 grid-cols-2 grid-rows-2">
+<div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
   <div class="border-2 rounded p-3 flex-auto">
     <h2 class="text-xl mb-2">Aktuell</h2>
     Bezug:
