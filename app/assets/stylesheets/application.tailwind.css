@@ -11,3 +11,7 @@
 a {
   @apply link;
 }
+
+button {
+  @apply link;
+}
