@@ -18,12 +18,13 @@
         <td><%= trigger_point.direction %></td>
         <td><%= trigger_point.power %></td>
         <td><%= trigger_point.scene %></td>
-        <td class="flex whitespace-nowrap w-0">
+        <td class="flex whitespace-nowrap w-0 gap-1">
           <%= link_to icon("pencil"), [:edit, trigger_point] %>
           <% if trigger_point != @trigger_points.first %>
             <%=
               button_to icon("arrow-up"),
                         trigger_point,
+                        class: "link",
                         params: {
                           trigger_point: {
                             position: trigger_point.position - 1,
@@ -35,6 +36,7 @@
             <%=
               button_to icon("arrow-down"),
                         trigger_point,
+                        class: "link",
                         params: {
                           trigger_point: {
                             position: trigger_point.position + 1,
@@ -42,7 +44,7 @@
                         }
             %>
           <% end %>
-          <%= button_to icon("trash"), trigger_point, method: :delete %>
+          <%= button_to icon("trash"), trigger_point, class: "link", method: :delete %>
         </td>
       </tr>
     <% end %>
