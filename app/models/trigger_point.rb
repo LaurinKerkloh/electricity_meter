@@ -4,12 +4,12 @@ class TriggerPoint < ApplicationRecord
 
   default_scope { order(:position) }
 
-  before_validation :set_position, on: :create
-  after_update :switch_position
+  before_create :set_position
+  before_update :adjust_positions_on_update
+  before_destroy :decrement_higher_positions
 
   validates :power, presence: true
   validates :scene, presence: true
-  validates :position, presence: true, numericality: {greater_than_or_equal_to: 0}
 
   def trigger
     Rails.logger.info("Triggering Scene: #{scene}")
@@ -20,15 +20,20 @@ class TriggerPoint < ApplicationRecord
   private
 
   def set_position
-    last = TriggerPoint.reorder(:position).last
-    self.position = if last.present?
-      last.position + 1
-    else
-      0
+    self.position = (TriggerPoint.maximum(:position) || -1) + 1
+  end
+
+  def adjust_positions_on_update
+    if position_was < position
+      # Moving downwards, shift items up between the old and new position
+      TriggerPoint.where(position: (position_was + 1)..position).update_all("position = position - 1")
+    elsif position_was > position
+      # Moving upwards, shift items down between the new and old position
+      TriggerPoint.where(position: position...position_was).update_all("position = position + 1")
     end
   end
 
-  def switch_position
-    TriggerPoint.find_by(position: position).update_column(:position, position_was)
+  def decrement_higher_positions
+    TriggerPoint.where("position > ?", position).update_all("position = position - 1")
   end
 end
