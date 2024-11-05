@@ -1,7 +1,7 @@
 class ElectricityMeterReading < ApplicationRecord
   enum :meter, {house: "house", solar: "solar"}, validate: true
+  broadcasts_refreshes
 
-  after_commit -> { broadcast_refresh_to(:overview) }
   after_commit :toggle_switch, on: :create
 
   private

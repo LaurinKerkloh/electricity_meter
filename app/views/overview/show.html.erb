@@ -1,4 +1,4 @@
-<%= turbo_stream_from :overview %>
+<%= turbo_stream_from :electricity_meter_readings %>
 <% if [@house.time, @solar.time].min < Time.now - 30.seconds %>
   <div class="text-lg border rounded-lg bg-yellow-200 p-3 mb-3">Einer der Zähler hat seit mindestens 30 Sekunden keinen Wert mehr gemeldet!</div>
 <% end %>
