@@ -1,25 +1,27 @@
 class ElectricityMeterReading < ApplicationRecord
+  OFF_ABOVE = 0 
+  ON_BELOW = -400
   enum :meter, {house: "house", solar: "solar"}, validate: true
   broadcasts_refreshes
 
-  after_commit :toggle_switch, on: :create
+  after_commit :switch_device, on: :create
 
   private
 
-  def toggle_switch
+  def switch_device
     return unless house?
 
-    previous_reading = ElectricityMeterReading.house.last(2).first
-    trigger_points_to_be_triggerd = if current_power > previous_reading.current_power
-      TriggerPoint.up.where(power: previous_reading.current_power..current_power)
-    elsif current_power < previous_reading.current_power
-      TriggerPoint.down.where(power: current_power..previous_reading.current_power)
-    else
-      []
+    return if power <= OFF_ABOVE && power >= ON_BELOW
+
+    Device.update_states
+
+    if power < ON_BELOW
+      Devices.where(on: false).order(priority: :asc).first&.switch_on
     end
 
-    trigger_points_to_be_triggerd.each do |trigger_point|
-      trigger_point.trigger
+    if power > OFF_ABOVE
+      Devices.where(on: true).order(priority: :desc).first&.switch_off
     end
   end
+
 end

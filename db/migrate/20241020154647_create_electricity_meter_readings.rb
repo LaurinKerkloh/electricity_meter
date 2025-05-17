@@ -1,4 +1,4 @@
-class CreateElectricityMeterReadings < ActiveRecord::Migration[8.1]
+class CreateElectricityMeterReadings < ActiveRecord::Migration[8.0]
   def change
     create_table :electricity_meter_readings do |t|
       t.datetime :time, null: false

@@ -1,0 +1,29 @@
+<%# locals: (device:) %>
+<%= form_with model: device do |form| %>
+  <%= form.object.errors.full_messages.presence %>
+  <div class="flex flex-col gap-3">
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :on_scene %>
+      <%= form.text_field :on_scene, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :off_scene %>
+      <%= form.text_field :off_scene, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :marker_position %>
+      <%= form.text_field :marker_position, required: true %>
+    </div>
+
+    <div>
+      <%= form.submit class: "link" %>
+    </div>
+  </div>
+<% end %>

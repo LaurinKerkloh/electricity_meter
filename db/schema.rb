@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_25_073040) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_17_194115) do
+  create_table "devices", force: :cascade do |t|
+    t.boolean "on", default: false, null: false
+    t.string "on_scene", null: false
+    t.string "off_scene", null: false
+    t.boolean "disabled", default: false, null: false
+    t.integer "priority", null: false
+    t.integer "marker_position", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "electricity_meter_readings", force: :cascade do |t|
     t.datetime "time", null: false
     t.decimal "reading", precision: 10, scale: 4
@@ -19,15 +31,5 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_25_073040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["time", "meter"], name: "index_electricity_meter_readings_on_time_and_meter", unique: true
-  end
-
-  create_table "trigger_points", force: :cascade do |t|
-    t.string "direction", null: false
-    t.integer "power", null: false
-    t.string "scene", null: false
-    t.integer "position", null: false
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 end

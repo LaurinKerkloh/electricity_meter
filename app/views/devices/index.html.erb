@@ -1,0 +1,39 @@
+<div class="mb-3">
+  <%= link_to "Startseite", root_path %>
+</div>
+<table class="border-collapse w-full table-auto">
+  <thead>
+    <tr class="border-b-2">
+      <th class="text-start">Priorität</th>
+      <th class="text-start">Name</th>
+      <th class="text-start">Angeschaltet</th>
+      <th class="text-start">An Szene</th>
+      <th class="text-start">Aus Szene</th>
+      <th class="text-start">Marker Position</th>
+      <th class="whitespace-nowrap w-0">Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr class="border-b">
+        <td><%= device.priority + 1 %></td>
+        <td><%= device.name %></td>
+        <td><%= device.on ? "Ja" : "Nein" %></td>
+        <td><%= device.on_scene %></td>
+        <td><%= device.off_scene %></td>
+        <td><%= device.marker_position %></td>
+        <td class="flex whitespace-nowrap w-0 gap-1">
+          <%= link_to icon("pencil"), [:edit, device] %>
+          <% if device != @devices.first %>
+            <%= button_to icon("arrow-up"), device, class: "link", params: { device: { priority: device.priority - 1 } } %>
+          <% end %>
+          <% if device != @devices.last %>
+            <%= button_to icon("arrow-down"), device, class: "link", params: { device: { priority: device.priority + 1 } } %>
+          <% end %>
+          <%= button_to icon("trash"), device, class: "link", method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Neues Gerät hinzufügen", %i[new device] %>

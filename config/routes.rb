@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "overview#show"
 
-  resources :trigger_points, except: :show
+  resources :devices, except: :show
 end

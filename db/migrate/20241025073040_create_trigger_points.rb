@@ -1,4 +1,4 @@
-class CreateTriggerPoints < ActiveRecord::Migration[8.1]
+class CreateTriggerPoints < ActiveRecord::Migration[8.0]
   def change
     create_table :trigger_points do |t|
       t.string :direction, null: false

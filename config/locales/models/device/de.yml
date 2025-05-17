@@ -1,0 +1,11 @@
+---
+de:
+  activerecord:
+    attributes:
+      device:
+        name: Name
+        marker_position: Marker Position
+        on_scene: An Szene
+        off_scene: Aus Szene
+    models:
+      Device: Gerät
