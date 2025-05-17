@@ -7,12 +7,12 @@ class Device < ApplicationRecord
   validates :name, presence: true
   validates :on_scene, presence: true
   validates :off_scene, presence: true
-  validates :marker_position, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :marker_position, presence: true, numericality: {greater_than_or_equal_to: 1}
 
   def self.update_states
     marker = LightManager.read_marker
     self.all.each do |device|
-      device.update(on: marker[device.marker_position])
+      device.update(on: marker[device.marker_position - 1])
     end
   end
 
