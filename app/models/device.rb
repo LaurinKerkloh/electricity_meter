@@ -11,7 +11,7 @@ class Device < ApplicationRecord
 
   def self.update_states
     marker = LightManager.read_marker
-    self.class.each do |device|
+    self.all.each do |device|
       device.update(on: marker[device.marker_position])
     end
   end
