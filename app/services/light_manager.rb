@@ -8,6 +8,6 @@ module LightManager
 
     def self.read_marker
       response = Net::HTTP.get(URI.join(URL, "params.json"))
-      return JSON.parse(response)&.dig("marker state")&.to_s.chars.map{_1 == 1}
+      return JSON.parse(response)&.dig("marker state")&.to_s.chars.map{_1 == "1"}
     end
 end
