@@ -8,4 +8,4 @@ de:
         on_scene: An Szene
         off_scene: Aus Szene
     models:
-      Device: Gerät
+      device: Gerät
