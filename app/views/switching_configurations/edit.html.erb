@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <%= link_to "Geräte", Device %>
+</div>
+<%= form_with model: @switching_configuration do |form| %>
+  <%= form.object.errors.full_messages.presence %>
+  <div class="flex flex-col gap-3">
+    <div>
+      <%= form.label :on_below %>
+      <%= form.number_field :on_below, value: -@switching_configuration.on_below, required: true, min: 0, step: 1 %>
+    </div>
+
+    <div>
+      <%= form.label :off_above %>
+      <%= form.number_field :off_above, required: true, min: 0, step: 1 %>
+    </div>
+
+    <div>
+      <%= form.submit class: "link" %>
+    </div>
+  </div>
+<% end %>

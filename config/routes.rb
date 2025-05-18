@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   root "overview#show"
 
   resources :devices, except: :show
+
+  resources :switching_configurations, only: [:update, :edit]
 end

@@ -56,11 +56,17 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "erb-formatter", require: false, git: "https://github.com/pelletencate/erb-formatter", ref: "99601be"
+  gem "erb_lint", require: false
 
-  gem "ruby-lsp", "~> 0.17", require: false
+  gem "ruby-lsp", require: false
+  gem "ruby-lsp-rails", require: false
 
-  gem "standard", "~> 1.39", require: false
-  gem "standard-rails", "~> 1.0", require: false
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-performance", require: false
+  gem "standard", require: false
+  gem "standard-rails", require: false
+  gem "standard-performance", require: false
 end
 
 group :test do

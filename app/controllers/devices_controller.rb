@@ -1,6 +1,7 @@
 class DevicesController < ApplicationController
   def index
     @devices = Device.all.order(:priority)
+    @switching_configuration = SwitchingConfiguration.load
   end
 
   def new

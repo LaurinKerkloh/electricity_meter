@@ -1,0 +1,9 @@
+---
+de:
+  activerecord:
+    attributes:
+      switching_configuration:
+        on_below: Schalte an, wenn Einspeisung größer als
+        off_above: Schalte aus, wenn Bezug größer als
+    models:
+      switching_configuration: Schaltungseinstellungen

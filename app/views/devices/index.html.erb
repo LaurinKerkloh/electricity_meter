@@ -37,3 +37,47 @@
   </tbody>
 </table>
 <%= link_to "Neues Gerät hinzufügen", %i[new device] %>
+<div class="mt-6">
+  <div class="text-xl">
+    <% if @switching_configuration.disable_switching %>
+      Steurung pausiert!
+      <%=
+        button_to icon("play-fill"),
+                  @switching_configuration,
+                  class: "link",
+                  form_class: "inline py-2",
+                  params: {
+                    switching_configuration: {
+                      disable_switching: false,
+                    },
+                  }
+      %>
+    <% else %>
+      Steurung aktiv!
+      <%=
+        button_to icon("pause-fill"),
+                  @switching_configuration,
+                  class: "link",
+                  form_class: "inline",
+                  params: {
+                    switching_configuration: {
+                      disable_switching: true,
+                    },
+                  }
+      %>
+    <% end %>
+  </div>
+  <div>
+    Schaltpunkte:
+    <br>
+    Schalte an, wenn Einspeisung größer als:
+    <%= -@switching_configuration.on_below %>
+    W
+    <br>
+    Schalte aus, wenn Bezug größer als:
+    <%= @switching_configuration.off_above %>
+    W
+    <br>
+    <%= link_to "Schaltpunkte ändern", [:edit, @switching_configuration], class: "link" %>
+  </div>
+</div>
