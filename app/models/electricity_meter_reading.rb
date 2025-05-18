@@ -1,5 +1,5 @@
 class ElectricityMeterReading < ApplicationRecord
-  SWITCH_OFF_ABOVE = 0 
+  SWITCH_OFF_ABOVE = 0
   SWITCH_ON_BELOW = -400
 
   enum :meter, {house: "house", solar: "solar"}, validate: true
@@ -12,17 +12,16 @@ class ElectricityMeterReading < ApplicationRecord
   def switch_device
     return unless house?
 
-    return if power <= SWITCH_OFF_ABOVE && power >= SWITCH_ON_BELOW
+    return if current_power.between?(SWITCH_ON_BELOW, SWITCH_OFF_ABOVE)
 
     Device.update_states
 
-    if power < SWITCH_ON_BELOW
-      Devices.where(on: false).order(priority: :asc).first&.switch_on
+    if current_power < SWITCH_ON_BELOW
+      Device.where(on: false).order(priority: :asc).first&.switch_on
     end
 
-    if power > SWITCH_OFF_ABOVE
-      Devices.where(on: true).order(priority: :desc).first&.switch_off
+    if current_power > SWITCH_OFF_ABOVE
+      Device.where(on: true).order(priority: :desc).first&.switch_off
     end
   end
-
 end
