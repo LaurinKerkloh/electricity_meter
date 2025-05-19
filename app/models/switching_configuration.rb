@@ -1,4 +1,6 @@
 class SwitchingConfiguration < ApplicationRecord
+  broadcasts_refreshes
+
   before_create :check_for_existing
   before_destroy :check_for_existing
 

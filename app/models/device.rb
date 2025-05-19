@@ -1,8 +1,9 @@
 class Device < ApplicationRecord
+  broadcasts_refreshes
+
   before_create :set_priority
   before_update :adjust_priorities_on_update
   before_destroy :decrement_higher_priorities
-
 
   validates :name, presence: true
   validates :on_scene, presence: true
@@ -11,7 +12,7 @@ class Device < ApplicationRecord
 
   def self.update_states
     marker = LightManager.read_marker
-    self.all.each do |device|
+    all.each do |device|
       device.update(on: marker[device.marker_position - 1])
     end
   end
@@ -43,5 +44,4 @@ class Device < ApplicationRecord
   def decrement_higher_priorities
     self.class.where("priority > ?", priority).update_all("priority = priority - 1")
   end
-
 end

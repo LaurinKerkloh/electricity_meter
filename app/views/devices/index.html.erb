@@ -1,3 +1,5 @@
+<%= turbo_stream_from :devices %>
+<%= turbo_stream_from @switching_configuration %>
 <div class="mb-3">
   <%= link_to "Startseite", root_path %>
 </div>
@@ -15,6 +17,7 @@
   </thead>
   <tbody>
     <% @devices.each do |device| %>
+      <%= turbo_stream_from device %>
       <tr class="border-b">
         <td><%= device.priority + 1 %></td>
         <td><%= device.name %></td>
