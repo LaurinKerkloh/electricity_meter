@@ -16,7 +16,7 @@ class SwitchingConfigurationsController < ApplicationController
 
   def configuraition_params
     on_below = params.dig(:switching_configuration, :on_below)
-    params[:switching_configuration][:on_below] = -on_below if on_below.present?
+    params[:switching_configuration][:on_below] = -on_below.to_i if on_below.present?
     params.expect(switching_configuration: [:on_below, :off_above, :disable_switching])
   end
 end
