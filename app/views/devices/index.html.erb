@@ -40,7 +40,7 @@
 <div class="mt-6">
   <div class="text-xl">
     <% if @switching_configuration.disable_switching %>
-      Steurung pausiert!
+      Steuerung pausiert!
       <%=
         button_to icon("play-fill"),
                   @switching_configuration,
@@ -53,7 +53,7 @@
                   }
       %>
     <% else %>
-      Steurung aktiv!
+      Steuerung aktiv!
       <%=
         button_to icon("pause-fill"),
                   @switching_configuration,

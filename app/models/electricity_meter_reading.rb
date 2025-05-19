@@ -15,7 +15,7 @@ class ElectricityMeterReading < ApplicationRecord
 
     return if @config.disable_switching
 
-    return if current_power.between?(@config.on_below, @switch.off_above)
+    return if current_power.between?(@config.on_below, @config.off_above)
 
     if current_power < @config.on_below
       Device.where(on: false).order(priority: :asc).first&.switch_on
