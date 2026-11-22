@@ -25,5 +25,8 @@ module ElectricityMeter
     config.time_zone = "Europe/Berlin"
     config.i18n.default_locale = :de
 
+    # The jobs dashboard (/jobs) is only reachable from the LAN for now.
+    config.mission_control.jobs.http_basic_auth_enabled = false
+
   end
 end
