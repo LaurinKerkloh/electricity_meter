@@ -5,10 +5,10 @@ class SwitchingConfiguration < ApplicationRecord
   before_destroy :check_for_existing
 
   def self.load
-    config = SwitchingConfiguration.first
+    config = SwitchingConfiguration.sole
 
     if config.nil?
-      config = SwitchingConfiguration.create
+      config = SwitchingConfiguration.create!
     end
 
     config
